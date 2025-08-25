@@ -1,31 +1,41 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <string.h>
 
-int main(){
-    int a = 0,b = 0,noResult = 0,totalVotes;
-    printf("how many votes do you want?\n");
-    scanf("%d",&totalVotes);
-    char votersChoice;
+int main() {
+    int votes1 = 0, votes2 = 0, noResult = 0, totalVotes;
+    char option1[100], option2[100];
+    char votersChoice[100];
 
-    int i = 0;
+    // Ask for the two options to vote on
+    printf("Enter the first option: ");
+    scanf("%s", option1);
 
-    while (i < totalVotes){
-        printf("who do you want to vote on a or b?\n");
-        scanf("c", votersChoice);
-        if (votersChoice == 'a'){
-            a++;
-        } else if (votersChoice == 'b'){
-            b++;
+    printf("Enter the second option: ");
+    scanf("%s", option2);
+
+    // Ask how many votes
+    printf("How many votes do you want?\n");
+    scanf("%d", &totalVotes);
+
+    // Voting loop
+    for (int i = 0; i < totalVotes; i++) {
+        printf("What do you want to vote for (%s or %s)? ", option1, option2);
+        scanf("%s", votersChoice);
+
+        if (strcmp(votersChoice, option1) == 0) {
+            votes1++;
+        } else if (strcmp(votersChoice, option2) == 0) {
+            votes2++;
         } else {
             noResult++;
         }
-
-        i++;
     }
+
+    // Show results
     printf("\nVoting Results:\n");
-    printf("a: %d votes\n", a);
-    printf("b: %d votes\n", b);
+    printf("%s: %d votes\n", option1, votes1);
+    printf("%s: %d votes\n", option2, votes2);
     printf("Invalid votes: %d\n", noResult);
 
     return 0;
-
 }
